@@ -1,13 +1,17 @@
-import Perceptron
+from Perceptron import Perceptron
+import numpy as np
 
 class Layer:
-    def __init__(self, size):
-        self.perceptrons = []
-        for i in range(size):
-            self.perceptrons.append(Perceptron())
+    def __init__(self, input_size, num_perceptrons, random_seed=None):
+        self.perceptrons = [Perceptron(input_size, random_seed) for _ in range(num_perceptrons)]
 
-    def connectTo(layer):
-        for firstLayerPerceptron in self.perceptrons:
-            for secondLayerPerceptron in layer.perceptrons:
-                firstLayerPerceptron.addParent(secondLayerPerceptron)
-                secondLayerPerceptron.addChild(firstLayerPerceptron)
+    def forward(self, x):
+        self.input = x
+        return np.array([p.forward(x) for p in self.perceptrons])
+
+    def backward(self, gradient, learning_rate):
+        total_grad = np.zeros_like(self.perceptrons[0].input, dtype=np.float64)
+        for i, p in enumerate(self.perceptrons):
+            grad_i = p.backward(gradient[i], learning_rate)
+            total_grad += grad_i
+        return total_grad
