@@ -3,8 +3,8 @@ from Activation import Activation
 import numpy as np
 
 class Layer:
-    def __init__(self, input_size, num_perceptrons, activation: Activation, random_seed=None):
-        self.perceptrons = [Perceptron(input_size, activation, random_seed) for _ in range(num_perceptrons)]
+    def __init__(self, input_size, num_perceptrons, activation: Activation):
+        self.perceptrons = [Perceptron(input_size, activation) for _ in range(num_perceptrons)]
 
     def forward(self, x):
         self.input = x
