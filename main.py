@@ -1,5 +1,5 @@
 from Network import Network
-from Sigmoid import Sigmoid
+from Activation import Sigmoid, ReLU
 import numpy as np
 
 X = np.array([
@@ -15,7 +15,7 @@ Y = np.array([
     [0]
 ])
 
-net = Network([3, 4, 1], Sigmoid(), random_seed=14)
+net = Network([3, 4, 1], ReLU(0.05), random_seed=14)
 
 for epoch in range(100000):
     loss = 0

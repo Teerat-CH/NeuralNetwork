@@ -19,7 +19,7 @@ class Perceptron:
         return self.output
 
     def backward(self, gradients: float, learning_rate: float) -> np.ndarray:
-        grad_wrt_weighted_sum: float = gradients * self.activation.activate_derivative(self.output)
+        grad_wrt_weighted_sum: float = gradients * self.activation.activate_derivative(self.weighted_sum)
         grad_wrt_weights: np.ndarray = grad_wrt_weighted_sum * self.input
         grad_wrt_input: np.ndarray = grad_wrt_weighted_sum * self.weights
         self.weights -= learning_rate * grad_wrt_weights
