@@ -1,4 +1,4 @@
-from Layer import Layer
+from Layers import FeedForward
 from Activation import Activation
 from Loss import Loss
 import numpy as np
@@ -11,7 +11,7 @@ class Network:
         if len(layer_sizes) -1 != len(activations):
             raise ValueError("Number of activation functions must match the number of layers.")
         for i in range(len(layer_sizes) - 1):
-            self.layers.append(Layer(layer_sizes[i], layer_sizes[i+1], activations[i]))
+            self.layers.append(FeedForward(layer_sizes[i], layer_sizes[i+1], activations[i]))
 
     def forward(self, x):
         for layer in self.layers:
